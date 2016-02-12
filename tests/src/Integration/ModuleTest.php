@@ -31,7 +31,7 @@ class ModuleTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         /* @noinspection PhpIncludeInspection */
-        $this->moduleLoader = new ModuleLoader(require 'resources/Integration/config/application.config.php');
+        $this->moduleLoader = new ModuleLoader(require 'config/application.config.php');
     }
 
     /**

@@ -7,6 +7,7 @@
  */
 
 namespace FinalGene\RestApiEntryPointModuleTest\Unit\Resource;
+
 use FinalGene\RestApiEntryPointModule\Resource\EntryPointResource;
 use FinalGene\RestApiEntryPointModule\Service\EntryPointService;
 use Zend\Mvc\Router\RouteMatch;
@@ -21,7 +22,32 @@ use ZF\Rest\ResourceEvent;
 class EntryPointResourceTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers \FinalGene\RestApiEntryPointModule\Resource\EntryPointResource::fetchAll()
+     * @covers \FinalGene\RestApiEntryPointModule\Resource\EntryPointResource::setEntryPointService
+     * @covers \FinalGene\RestApiEntryPointModule\Resource\EntryPointResource::getEntryPointService
+     */
+    public function testSetAndGetEntyPointService()
+    {
+        $expected = $this->getMockBuilder(EntryPointService::class)
+            ->getMock();
+        /** @var EntryPointService $expected */
+
+        $resource = new EntryPointResource();
+        $resource->setEntryPointService($expected);
+        $this->assertEquals($expected, $resource->getEntryPointService());
+    }
+
+    /**
+     * @covers \FinalGene\RestApiEntryPointModule\Resource\EntryPointResource::getEntryPointService
+     * @expectedException \BadMethodCallException
+     */
+    public function testGetRouterWillThrowException()
+    {
+        $resource = new EntryPointResource();
+        $resource->getEntryPointService();
+    }
+
+    /**
+     * @covers \FinalGene\RestApiEntryPointModule\Resource\EntryPointResource::fetchAll
      */
     public function testFetchAllEntryPointResource()
     {

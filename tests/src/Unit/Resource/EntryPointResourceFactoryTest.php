@@ -1,22 +1,20 @@
 <?php
 /**
- * Entry point service factory test file
+ * Entry point resource factory test file
  *
  * @copyright Copyright (c) 2016, final gene <info@final-gene.de>
  * @author    Frank Giesecke <frank.giesecke@final-gene.de>
  */
 
-namespace FinalGene\RestApiEntryPointModuleTest\Integration\Service;
+namespace FinalGene\RestApiEntryPointModuleTest\Unit\Service;
 
-use FinalGene\RestApiEntryPointModule\Service\EntryPointService;
+use FinalGene\RestApiEntryPointModule\Resource\EntryPointResource;
 use Zend\Test\Util\ModuleLoader;
 
 /**
- * Entry point service factory test
- *
- * @package FinalGene\RestApiEntryPointModuleTest\Integration\Service
+ * Class EntryPointResourceFactoryTest
  */
-class EntryPointServiceFactoryTest extends \PHPUnit_Framework_TestCase
+class EntryPointResourceFactoryTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var \Zend\ServiceManager\ServiceManager
@@ -44,13 +42,17 @@ class EntryPointServiceFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test if the entry point service can be created from the factory
+     * @covers \FinalGene\RestApiEntryPointModule\Resource\EntryPointResourceFactory::createService
+     * @uses \FinalGene\RestApiEntryPointModule\Resource\EntryPointResource
+     * @uses \FinalGene\RestApiEntryPointModule\Service\EntryPointService
+     * @uses \FinalGene\RestApiEntryPointModule\Service\EntryPointServiceFactory
+     * @uses \FinalGene\RestApiEntryPointModule\Module
      */
-    public function testCreateEntryPointService()
+    public function testCreateService()
     {
         $this->assertInstanceOf(
-            EntryPointService::class,
-            $this->getServiceManager()->get(EntryPointService::class)
+            EntryPointResource::class,
+            $this->getServiceManager()->get(EntryPointResource::class)
         );
     }
 }

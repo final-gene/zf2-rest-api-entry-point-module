@@ -25,7 +25,7 @@ class EntryPointResourceTest extends AbstractHttpControllerTestCase
         parent::setUp();
 
         /* @noinspection PhpIncludeInspection */
-        $this->setApplicationConfig(require 'resources/Integration/config/application.config.php');
+        $this->setApplicationConfig(require 'config/application.config.php');
 
         /** @var \Zend\Http\Request $request */
         $request = $this->getRequest();

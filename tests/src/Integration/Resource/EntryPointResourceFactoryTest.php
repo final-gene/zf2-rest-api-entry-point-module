@@ -29,7 +29,7 @@ class EntryPointResourceFactoryTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         /* @noinspection PhpIncludeInspection */
-        $moduleLoader = new ModuleLoader(require 'resources/Integration/config/application.config.php');
+        $moduleLoader = new ModuleLoader(require 'config/application.config.php');
         $this->serviceManager = $moduleLoader->getServiceManager();
     }
 

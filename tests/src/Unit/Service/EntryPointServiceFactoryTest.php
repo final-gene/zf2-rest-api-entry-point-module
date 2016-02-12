@@ -6,15 +6,13 @@
  * @author    Frank Giesecke <frank.giesecke@final-gene.de>
  */
 
-namespace FinalGene\RestApiEntryPointModuleTest\Integration\Service;
+namespace FinalGene\RestApiEntryPointModuleTest\Unit\Service;
 
 use FinalGene\RestApiEntryPointModule\Service\EntryPointService;
 use Zend\Test\Util\ModuleLoader;
 
 /**
- * Entry point service factory test
- *
- * @package FinalGene\RestApiEntryPointModuleTest\Integration\Service
+ * Class EntryPointResourceFactoryTest
  */
 class EntryPointServiceFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -44,9 +42,11 @@ class EntryPointServiceFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test if the entry point service can be created from the factory
+     * @covers \FinalGene\RestApiEntryPointModule\Service\EntryPointServiceFactory::createService
+     * @uses \FinalGene\RestApiEntryPointModule\Service\EntryPointService
+     * @uses \FinalGene\RestApiEntryPointModule\Module
      */
-    public function testCreateEntryPointService()
+    public function testCreateService()
     {
         $this->assertInstanceOf(
             EntryPointService::class,
