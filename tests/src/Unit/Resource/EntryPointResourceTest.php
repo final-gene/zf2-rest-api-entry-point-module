@@ -101,12 +101,19 @@ class EntryPointResourceTest extends \PHPUnit_Framework_TestCase
             ->willReturn([$routeName]);
 
         $uriTemplateServiceMock = $this->getMockBuilder(UriTemplateService::class)
-            ->setMethods(['getFromRoute'])
+            ->setMethods([
+                'getFromRoute',
+                'getCollectionNameFromRoute',
+            ])
             ->getMock();
         $uriTemplateServiceMock->expects($this->once())
             ->method('getFromRoute')
             ->with($routeName)
             ->willReturn('/foo');
+        $uriTemplateServiceMock->expects($this->once())
+            ->method('getCollectionNameFromRoute')
+            ->with($routeName)
+            ->willReturn('bar:foo');
 
         $resourceMock = $this->getMockBuilder(EntryPointResource::class)
             ->setMethods(['getEvent', 'getEntryPointService', 'getUriTemplateService'])
