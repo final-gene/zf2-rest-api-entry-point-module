@@ -12,6 +12,8 @@
  */
 function findInitApplication()
 {
+    return false;
+    
     $path = new \SplFileInfo(__DIR__);
     do {
         $intiFile = new \SplFileInfo($path . '/init_application.php');

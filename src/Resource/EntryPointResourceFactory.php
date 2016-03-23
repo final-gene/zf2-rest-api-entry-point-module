@@ -9,6 +9,7 @@
 namespace FinalGene\RestApiEntryPointModule\Resource;
 
 use FinalGene\RestApiEntryPointModule\Service\EntryPointService;
+use FinalGene\UriTemplateModule\Service\UriTemplateService;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
@@ -28,11 +29,15 @@ class EntryPointResourceFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        /** @var \FinalGene\RestApiEntryPointModule\Service\EntryPointService $entryPointService */
+        /** @var EntryPointService $entryPointService */
         $entryPointService = $serviceLocator->get(EntryPointService::class);
+
+        /** @var UriTemplateService $uriTemplateService */
+        $uriTemplateService = $serviceLocator->get(UriTemplateService::class);
 
         $resource = new EntryPointResource();
         return $resource
-            ->setEntryPointService($entryPointService);
+            ->setEntryPointService($entryPointService)
+            ->setUriTemplateService($uriTemplateService);
     }
 }

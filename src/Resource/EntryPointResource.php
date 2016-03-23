@@ -10,6 +10,7 @@ namespace FinalGene\RestApiEntryPointModule\Resource;
 
 use BadMethodCallException;
 use FinalGene\RestApiEntryPointModule\Service\EntryPointService;
+use FinalGene\UriTemplateModule\Service\UriTemplateService;
 use ZF\Hal\Entity;
 use ZF\Hal\Link\Link;
 use ZF\Rest\AbstractResourceListener;
@@ -27,7 +28,12 @@ class EntryPointResource extends AbstractResourceListener
      *
      * @var EntryPointService
      */
-    protected $entryPointService;
+    private $entryPointService;
+
+    /**
+     * @var UriTemplateService
+     */
+    private $uriTemplateService;
 
     /**
      * Get entry point service
@@ -59,6 +65,30 @@ class EntryPointResource extends AbstractResourceListener
     }
 
     /**
+     * Get $uriTemplateService
+     *
+     * @return UriTemplateService
+     */
+    public function getUriTemplateService()
+    {
+        if (!$this->uriTemplateService instanceof UriTemplateService) {
+            throw new BadMethodCallException('URI template service not set');
+        }
+
+        return $this->uriTemplateService;
+    }
+
+    /**
+     * @param UriTemplateService $uriTemplateService
+     * @return EntryPointResource
+     */
+    public function setUriTemplateService(UriTemplateService $uriTemplateService)
+    {
+        $this->uriTemplateService = $uriTemplateService;
+        return $this;
+    }
+
+    /**
      * Fetch all or a subset of resources
      *
      * @param  array $params
@@ -74,14 +104,13 @@ class EntryPointResource extends AbstractResourceListener
             return $entity;
         }
 
+        $uriTemplateService = $this->getUriTemplateService();
         $links = $entity->getLinks();
         $names = $this->getEntryPointService()->findChildRouteNames($event->getRouteMatch());
         foreach ($names as $rel => $name) {
             $links->add(Link::factory([
-                'rel' => $rel,
-                'route' => [
-                    'name' => $name
-                ]
+                'rel' => $uriTemplateService->getCollectionNameFromRoute($name) ?: $rel,
+                'url' => $uriTemplateService->getFromRoute($name),
             ]));
         }
 

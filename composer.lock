@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f9b04b3725d28263776503b167b2fcf6",
-    "content-hash": "f680ef990ef985c87b5c617232f88ef7",
+    "hash": "cb788c4edb923418fe23182d4e9aab8a",
+    "content-hash": "787e6cff42d8a708e7dcdf87cf0398c6",
     "packages": [
         {
             "name": "bshaffer/oauth2-server-php",
@@ -82,6 +82,79 @@
             ],
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
             "time": "2014-12-30 15:22:37"
+        },
+        {
+            "name": "final-gene/uri-template-module",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "git@gitlab.devel.final-gene.de:final-gene/uri-template-module.git",
+                "reference": "f8c4742469f805d0de84a805c0300d3e03e9795f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://satis.final-gene.de/dist/final-gene-uri-template-module-1.2.0-1ba40f.zip",
+                "reference": "f8c4742469f805d0de84a805c0300d3e03e9795f",
+                "shasum": "e4c0e49169da8503ab2a6151dfdc06d6d5cea2a0"
+            },
+            "archive": {
+                "exclude": [
+                    "/.*",
+                    "build.xml",
+                    "/composer.*",
+                    "/phpunit.*",
+                    "sonar-project.properties",
+                    "/tests"
+                ]
+            },
+            "require": {
+                "php": ">=5.5.0",
+                "zendframework/zend-config": "^2.5",
+                "zendframework/zend-modulemanager": "^2.5",
+                "zendframework/zend-servicemanager": "^2.5"
+            },
+            "require-dev": {
+                "final-gene/phing-commons": "^2.2",
+                "phpunit/phpunit": "^4.8",
+                "zendframework/zend-filter": "^2.5",
+                "zendframework/zend-form": "^2.5",
+                "zendframework/zend-i18n": "^2.5",
+                "zendframework/zend-inputfilter": "^2.5",
+                "zendframework/zend-log": "^2.5",
+                "zendframework/zend-serializer": "^2.5",
+                "zendframework/zend-stdlib": "^2.5",
+                "zendframework/zend-test": "^2.5",
+                "zendframework/zend-validator": "^2.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "FinalGene\\UriTemplateModule\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "FinalGene\\UriTemplateModuleTest\\": "tests/src"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "vendor/bin/phpunit"
+                ]
+            },
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Frank Giesecke",
+                    "email": "frank.giesecke@final-gene.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Build URI templates from ZF2 routes",
+            "homepage": "https://gitlab.devel.final-gene.de/final-gene/uri-template-module",
+            "time": "2016-03-23 17:12:05"
         },
         {
             "name": "zendframework/zend-authentication",
