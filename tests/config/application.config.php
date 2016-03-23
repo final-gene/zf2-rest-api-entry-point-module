@@ -12,6 +12,7 @@ return [
         'ZF\ContentNegotiation',
         'ZF\Hal',
         'ZF\Rest',
+        'FinalGene\UriTemplateModule',
         'FinalGene\RestApiEntryPointModule',
     ],
     'module_listener_options' => [
