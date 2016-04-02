@@ -11,6 +11,7 @@ namespace FinalGene\RestApiEntryPointModule\Resource;
 use BadMethodCallException;
 use FinalGene\RestApiEntryPointModule\Service\EntryPointService;
 use FinalGene\UriTemplateModule\Service\UriTemplateService;
+use Rize\UriTemplate\Parser;
 use ZF\Hal\Entity;
 use ZF\Hal\Link\Link;
 use ZF\Rest\AbstractResourceListener;
@@ -108,12 +109,29 @@ class EntryPointResource extends AbstractResourceListener
         $links = $entity->getLinks();
         $names = $this->getEntryPointService()->findChildRouteNames($event->getRouteMatch());
         foreach ($names as $rel => $name) {
+            $url = $uriTemplateService->getFromRoute($name);
             $links->add(Link::factory([
                 'rel' => $uriTemplateService->getCollectionNameFromRoute($name) ?: $rel,
-                'url' => $uriTemplateService->getFromRoute($name),
+                'url' => $url,
+                'props' => [
+                    'templated' => $this->isTemplated($url),
+                ],
             ]));
         }
 
         return $entity;
+    }
+
+    /**
+     * Check if url contains templated elements
+     *
+     * @param string $url
+     *
+     * @return bool
+     */
+    private function isTemplated($url)
+    {
+        $uriTemplateParser = new Parser();
+        return 1 < count($uriTemplateParser->parse($url));
     }
 }
