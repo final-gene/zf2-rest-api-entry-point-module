@@ -2,7 +2,7 @@
     "name": "final-gene/rest-api-entry-point-module",
     "description": "Provides a REST resource which represents an entry point of the API.",
     "type": "library",
-    "homepage": "https://gitlab.devel.final-gene.de/final-gene/rest-api-entry-point-module",
+    "homepage": "https://gitlab.final-gene.de/final-gene/rest-api-entry-point-module",
     "license": "proprietary",
     "repositories": [
         {
